@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "cf069de9-c982-41fb-8f92-b186a7ae9a51",
+		"name": "Prova 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44926338",
+		"_collection_link": "https://interstellar-satellite-9627242.postman.co/workspace/Marcus-Vin%C3%ADcius's-Workspace~855b6e5c-4ec4-416d-827e-181b42c7a1aa/collection/44926338-cf069de9-c982-41fb-8f92-b186a7ae9a51?action=share&source=collection_link&creator=44926338"
+	},
+	"item": [
+		{
+			"name": "Busca todas as pessoas com 28 anos de idade",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const users = pm.response.json().users;\r",
+							"\r",
+							"const filteredUsers = users.filter(user => user.age === 28);\r",
+							"\r",
+							"console.log(\"Usuários com 28 anos:\", filteredUsers);\r",
+							"\r",
+							"pm.test(\"Há pelo menos um usuário com 28 anos\", function () {\r",
+							"    pm.expect(filteredUsers.length).to.be.above(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummyjson.com/users?limit=100",
+					"protocol": "https",
+					"host": [
+						"dummyjson",
+						"com"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login com credenciais válidas",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status HTTP é 200\r",
+							"pm.test(\"Status deve ser 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta contém um token ou nome de usuário\r",
+							"pm.test(\"Login realizado com sucesso\", function () {\r",
+							"    const res = pm.response.json();\r",
+							"\r",
+							"    // Pode ser ajustado conforme a resposta real\r",
+							"    pm.expect(res).to.have.any.keys(\"token\", \"username\", \"email\", \"id\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dummyjson.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"dummyjson",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login com credenciais inválidas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se o status indica falha de login (400, 401 ou 403)\r",
+							"pm.test(\"Status deve indicar falha no login (400, 401 ou 403)\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403]);\r",
+							"});\r",
+							"\r",
+							"// Verifica se a resposta contém alguma mensagem de erro\r",
+							"pm.test(\"Resposta deve conter mensagem de erro\", function () {\r",
+							"    const res = pm.response.json();\r",
+							"    \r",
+							"    // Pode ser 'error', 'message' ou outro nome — ajuste conforme necessário\r",
+							"    pm.expect(Object.keys(res)).to.satisfy(keys =>\r",
+							"        keys.includes(\"error\") || keys.includes(\"message\") || keys.includes(\"mensagem\")\r",
+							"    );\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"KurtCobain\",\r\n  \"password\": \"Shotgun\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dummyjson.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"dummyjson",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
