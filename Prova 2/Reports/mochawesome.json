@@ -1,0 +1,158 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-19T21:48:07.573Z",
+    "end": "2025-06-19T21:48:13.700Z",
+    "duration": 6127,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "be97afe3-7882-4149-b27e-a5115389ac54",
+      "title": "",
+      "fullFile": "cypress\\e2e\\prova2.cy.js",
+      "file": "cypress\\e2e\\prova2.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bb49c4dd-9be4-47b6-b657-56f655efd28b",
+          "title": "Testes login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Teste de login falho",
+              "fullTitle": "Testes login Teste de login falho",
+              "timedOut": null,
+              "duration": 1864,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Ignorar erros de origem cruzada (como CORS) pois estava dando erros em alguns testes\nCypress.on('uncaught:exception', (err, runnable) => {\n  return false;\n});\ncy.visit('https://www.saucedemo.com');\nconst {\n  user,\n  senha\n} = gerarLoginSenhaAleatorios();\ncy.get('[data-test=\"username\"]').type(user);\ncy.get('[data-test=\"password\"]').type(senha);\ncy.get('[data-test=\"login-button\"]').click();\ncy.get('[data-test=\"error\"]').should('exist');",
+              "err": {},
+              "uuid": "92dbab47-795f-49b9-82d3-0c45d999582f",
+              "parentUUID": "bb49c4dd-9be4-47b6-b657-56f655efd28b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Teste de login com sucesso",
+              "fullTitle": "Testes login Teste de login com sucesso",
+              "timedOut": null,
+              "duration": 874,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.saucedemo.com');\ncy.get('[data-test=\"username\"]').type('standard_user');\ncy.get('[data-test=\"password\"]').type('secret_sauce');\ncy.get('[data-test=\"login-button\"]').click();",
+              "err": {},
+              "uuid": "9803f543-6275-42e8-8790-1c03f1d465ac",
+              "parentUUID": "bb49c4dd-9be4-47b6-b657-56f655efd28b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "92dbab47-795f-49b9-82d3-0c45d999582f",
+            "9803f543-6275-42e8-8790-1c03f1d465ac"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2738,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "c4ab1eec-6fd1-4993-b16b-cb788e0cad92",
+          "title": "Teste de compras",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Realiza compra com sucesso",
+              "fullTitle": "Teste de compras Realiza compra com sucesso",
+              "timedOut": null,
+              "duration": 1818,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.saucedemo.com');\ncy.get('[data-test=\"username\"]').type('standard_user');\ncy.get('[data-test=\"password\"]').type('secret_sauce');\ncy.get('[data-test=\"login-button\"]').click();\ncy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]').click();\ncy.get('[data-test=\"shopping-cart-link\"]').click();\ncy.get('[data-test=\"checkout\"]').click();\ncy.get('[data-test=\"firstName\"]').type('CARLINHOS');\ncy.get('[data-test=\"lastName\"]').type('CAVALOS');\ncy.get('[data-test=\"postalCode\"]').type('37490000');\ncy.get('[data-test=\"continue\"]').click();\ncy.get('[data-test=\"finish\"]').click();\ncy.get('[data-test=\"complete-header\"]').should('exist');",
+              "err": {},
+              "uuid": "b99d0dd4-a44e-4694-b1a0-77e55cfb04c0",
+              "parentUUID": "c4ab1eec-6fd1-4993-b16b-cb788e0cad92",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b99d0dd4-a44e-4694-b1a0-77e55cfb04c0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1818,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
